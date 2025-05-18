@@ -14,14 +14,16 @@ function Navbar({
         <div></div>
       ) : (
         <button onClick={toggleShowImportant}>
+          {/* Switch between showing all journal entries and showing just those marked as important */}
           {showImportant ? (
             <>
               <House size={18} />
-              all entries
+              my journal
             </>
           ) : (
             <>
-              <Star size={18} /> important entries
+              <Star size={18} />
+              pinned thoughts
             </>
           )}
         </button>
@@ -32,17 +34,17 @@ function Navbar({
       </span>
       <button
         onClick={() => {
-          toggleShowCreate();
-          notEditing();
+          toggleShowCreate(); // Show/hide the entry creation form
+          notEditing(); // The form is configured for creation, NOT editing
         }}
       >
         {showCreate ? (
           <>
-            <ArrowLeft size={18} /> Cancel
+            <ArrowLeft size={18} /> cancel
           </>
         ) : (
           <>
-            <Plus size={18} /> Create Entry
+            <Plus size={18} /> create entry
           </>
         )}
       </button>

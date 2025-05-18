@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import DisplayEntries from "./DisplayEntries";
 import Navbar from "./Navbar";
 import Create from "./Create";
@@ -11,10 +11,13 @@ function App() {
 
   const limitedURL = "https://jsonplaceholder.typicode.com/posts?_limit=9";
 
+  // Loading state allows the app to display a loading screen when fetching
   const [loading, setLoading] = useState(true);
 
+  // Modify the loading state depending on whether we're starting a fetch or are done fetching
   const isLoading = (loadState) => setLoading(loadState);
 
+  // Fetch journal entries from the API when App.jsx mounts
   useEffect(() => {
     const fetcher = async () => {
       try {
@@ -22,11 +25,10 @@ function App() {
         if (!response.ok) {
           throw new Error(`HTTP error. Status: ${response.status}`);
         }
-        const data = await response.json();
+        const journalEntries = await response.json();
 
-        await new Promise((res) => setTimeout(res, 1500));
-
-        const importanceAdded = data.map((entry) => ({
+        // Add the important attribute for filtering
+        const importanceAdded = journalEntries.map((entry) => ({
           ...entry,
           important: false,
         }));
@@ -34,18 +36,28 @@ function App() {
       } catch (error) {
         console.error(`Fetch error: ${error}`);
       } finally {
-        setLoading(false);
+        // Turn off isLoading
+        isLoading(false);
       }
     };
 
     fetcher();
   }, []);
 
+  // nextId starts at 10 because the API returns entries with IDs 1–9 when using "?_limit=9"
+  const nextId = useRef(10);
+
   const addEntry = (entry) => {
-    setPosts((prevPosts) => [...prevPosts, entry]);
+    // Assign a valid ID to each new entry (whole numbers between 1-100) and an important attribute for filtering
+    const newEntry = { ...entry, id: nextId.current, important: false };
+    // Increment nextId so that the next entry gets an ID of 11, then 12, 13, etc.
+    nextId.current += 1;
+    // Add the new entry to the journal
+    setPosts((prevPosts) => [...prevPosts, newEntry]);
   };
 
   const deleteEntry = async (id) => {
+    // Show loading UI while deleting the entry
     isLoading(true);
     try {
       await fetch(`${baseURL}/${id}`, {
@@ -55,53 +67,65 @@ function App() {
     } catch (error) {
       console.error(`Delete failed: ${error}`);
     } finally {
+      // Turn off loading once fetching is done
       isLoading(false);
     }
   };
 
+  // State for determining whether the entry creation component should be rendered
   const [showCreate, setShowCreate] = useState(false);
 
   const toggleShowCreate = () => {
     setShowCreate((prevShowCreate) => !prevShowCreate);
   };
 
+  // Toggle an entry's important status
   const toggleImportant = (id) => {
     setPosts((prevPosts) => {
       return prevPosts.map((post) =>
+        // Once the entry is identified using the ID, flip its important value. Leave other entries as they are
         post.id === id ? { ...post, important: !post.important } : post
       );
     });
   };
 
+  // State for determining whether all entries should be rendered or just the ones marked as important
   const [showImportant, setShowImportant] = useState(false);
 
   const toggleShowImportant = () => {
     setShowImportant((prevShowImportant) => !prevShowImportant);
   };
 
+  // List of entries that have been marked as important
   const importantEntries = posts.filter((post) => post.important);
 
+  // State for determining whether the entry creation form should be configured for editing or creating
   const [edit, setEdit] = useState(false);
+
+  // State for holding an entry during editing
   const [editedEntry, setEditedEntry] = useState(null);
+
   const editing = (id) => {
+    // Find the entry to be edited based on its ID
     const entry = posts.find((post) => post.id === id);
+    // Once the entry has been found, we update editedEntry to that entry
     setEditedEntry(entry);
+    // Set edit to true so that the Create component knows that it should edit, not create
     setEdit(true);
+    // Signal that the Create component should be rendered
     setShowCreate(true);
   };
 
+  // Sets edit back to false so that the entry creation form is ready to create a new entry
   const notEditing = () => {
     setEdit(false);
   };
 
   const updateEntry = (editedEntry) => {
-    setPosts((prevPosts) => {
-      const updated = prevPosts.map((post) =>
-        post.id === editedEntry.id ? editedEntry : post
-      );
-      console.log(`Updated entries: ${updated}`);
-      return updated;
-    });
+    setPosts((prevPosts) =>
+      // Once we find the entry we're trying to update, we replace the old version with the updated one
+      prevPosts.map((post) => (post.id === editedEntry.id ? editedEntry : post))
+    );
   };
 
   return (
@@ -113,10 +137,9 @@ function App() {
         toggleShowCreate={toggleShowCreate}
         notEditing={notEditing}
       />
-      {console.log(`loading state is ${loading}`)}
       {loading ? (
-        <Loading />
-      ) : showCreate ? (
+        <Loading /> // If loading is true, show the loading screen
+      ) : showCreate ? ( // If loading is NOT true, check if we should show the entry creation form
         <Create
           url={baseURL}
           addEntry={addEntry}
@@ -128,6 +151,7 @@ function App() {
           isLoading={isLoading}
         />
       ) : (
+        // If we should NOT show the entry creation screen, show the list of entries
         <DisplayEntries
           importantEntries={importantEntries}
           posts={posts}

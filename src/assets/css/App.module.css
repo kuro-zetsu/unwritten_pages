@@ -1,12 +1,12 @@
 .new {
-    position:fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .new:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }

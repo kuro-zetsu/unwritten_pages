@@ -13,30 +13,30 @@ nav {
 }
 
 nav button {
-    background: none;
-    color: aqua;
-    border: none;
-    object-fit: scale-down;
-    font-size: 110%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  background: none;
+  color: aqua;
+  border: none;
+  object-fit: scale-down;
+  font-size: 110%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 nav button:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 nav h1 {
-    color: #001F3F;
+  color: #001f3f;
 }
 
 .logo {
-    display: flex;
+  display: flex;
 }
 
 .logo img {
-    width: 30px;
-    object-fit: scale-down;
+  width: 30px;
+  object-fit: scale-down;
 }

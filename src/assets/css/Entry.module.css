@@ -1,27 +1,26 @@
-
 .entry {
-    position: relative;
-    transition: 1s;
-    display: flex;
-    flex-direction: column;
-    justify-content:space-between;
-    height: 100%;
-    border: 1px solid rgb(11, 255, 255);
-    padding: 20px;
-    border-radius: 10px;
+  position: relative;
+  transition: 1s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  border: 1px solid rgb(11, 255, 255);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .controls *:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .controls * {
-    transition: 0.2s;
-    cursor: pointer;
+  transition: 0.2s;
+  cursor: pointer;
 }

@@ -1,13 +1,25 @@
 import styles from "../assets/css/Entry.module.css";
 import { Star, SquarePen, CircleX } from "lucide-react";
 
-function Entry({ id, title, body, important, changeImportant, deleteEntry, edit }) {
+function Entry({
+  id,
+  title,
+  body,
+  important,
+  changeImportant,
+  deleteEntry,
+  edit,
+}) {
   return (
     <div className={styles.entry}>
       <h2>{title}</h2>
       <p>{body}</p>
       <div className={styles.controls}>
-        <SquarePen onClick={() => edit(id)} size={24} color='rgb(11, 255, 255)' />
+        <SquarePen
+          onClick={() => edit(id)}
+          size={24}
+          color='rgb(11, 255, 255)'
+        />
         <Star
           onClick={() => changeImportant(id)}
           size={24}

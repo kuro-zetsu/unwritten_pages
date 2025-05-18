@@ -7,15 +7,17 @@ function DisplayEntries({
   deleteEntry,
   showImportant,
   importantEntries,
-  editing
+  editing,
 }) {
   return (
     <div className={styles["entries-page"]}>
-      <h1>{showImportant ? "Pinned Thoughts" : "My Journal_"}</h1>
+      <h1>{showImportant ? "pinned thoughts" : "my journal"}</h1>
       <hr />
       <div className={styles.entries}>
         {showImportant
-          ? importantEntries
+          ? // If important is true, display only important entries
+            importantEntries
+              .slice()
               .reverse()
               .map((post) => (
                 <div key={post.id} className={styles.entry}>
@@ -30,7 +32,8 @@ function DisplayEntries({
                   />
                 </div>
               ))
-          : posts
+          : // Otherwise, display all journal entries
+            posts
               .slice()
               .reverse()
               .map((post) => (
