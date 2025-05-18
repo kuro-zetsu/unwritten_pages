@@ -1,0 +1,42 @@
+nav {
+  margin: 0;
+  padding: 4px;
+  background: radial-gradient(circle, rgb(11, 255, 255), #1e1e1e);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  z-index: 100;
+}
+
+nav button {
+    background: none;
+    color: aqua;
+    border: none;
+    object-fit: scale-down;
+    font-size: 110%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+nav button:hover {
+    transform: scale(1.05);
+}
+
+nav h1 {
+    color: #001F3F;
+}
+
+.logo {
+    display: flex;
+}
+
+.logo img {
+    width: 30px;
+    object-fit: scale-down;
+}
