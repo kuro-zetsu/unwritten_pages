@@ -46,28 +46,22 @@ function Create({
     isLoading(true); // Show loading screen
 
     try {
-      const entryToSend = edit
-        ? // If we're editing, merge changes into the existing entry (preserves id and important)
-          { ...editedEntry, ...newEntry }
-        : // If we're creating a new entry, use what's in newEntry
-          { ...newEntry };
-
       const response = await fetch(edit ? `${url}/${editedEntry.id}` : url, {
-        method: edit ? "PUT" : "POST", // Change method based on whether we're editing or creating
+        method: edit ? "PATCH" : "POST", // Change method based on whether we're editing or creating
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(entryToSend),
+        body: JSON.stringify(newEntry),
       });
 
       if (!response.ok)
         throw new Error(`Failed to ${edit ? "edit" : "create"} entry`);
 
+      const data = await response.json();
+
       if (edit) {
-        // JSONPlaceholder doesn't behave well with PUT/PATCH, so update state to simulate successful PUT
-        updateEntry(entryToSend);
+        // If we're editing,
+        updateEntry({ ...editedEntry, ...data });
       } else {
-        // POST seems to work, so we receive the entry and add it to our list of journal entries
-        const createdEntry = await response.json();
-        addEntry(createdEntry);
+        addEntry(data);
       }
     } catch (error) {
       console.error(error);

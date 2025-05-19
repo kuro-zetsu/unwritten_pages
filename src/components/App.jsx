@@ -57,19 +57,21 @@ function App() {
   };
 
   const deleteEntry = async (id) => {
-    // Show loading UI while deleting the entry
     isLoading(true);
     try {
-      await fetch(`${baseURL}/${id}`, {
+      const response = await fetch(`${baseURL}/${id}`, {
         method: "DELETE",
       });
+
+      if (!response.ok) {
+        throw new Error(`Unable to delete: ${response.status}`);
+      }
+
       setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
     } catch (error) {
       console.error(`Delete failed: ${error}`);
-    } finally {
-      // Turn off loading once fetching is done
-      isLoading(false);
     }
+    isLoading(false);
   };
 
   // State for determining whether the entry creation component should be rendered
@@ -129,7 +131,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="main-container">
       <Navbar
         showImportant={showImportant}
         toggleShowImportant={toggleShowImportant}
@@ -162,7 +164,7 @@ function App() {
           notEditing={notEditing}
         />
       )}
-    </>
+    </div>
   );
 }
 

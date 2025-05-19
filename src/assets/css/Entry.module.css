@@ -5,22 +5,23 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
   border: 1px solid rgb(11, 255, 255);
   padding: 20px;
   border-radius: 10px;
 }
 
-.controls {
+.modifiers {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-.controls *:hover {
+.controls:hover{
   transform: scale(1.2);
 }
 
-.controls * {
+.controls {
   transition: 0.2s;
   cursor: pointer;
 }

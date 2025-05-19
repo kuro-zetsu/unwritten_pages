@@ -62,14 +62,6 @@ npm run dev
 
 Then open http://localhost:5173 in your browser and start writing!
 
----
-
-## **Notes**
-
-- This app uses [JSONPlaceholder](https://jsonplaceholder.typicode.com) as a mock API. Because it’s a demo service:
-  - Changes like edits and deletions won’t persist after a page refresh
-  - Some actions (like PUT or DELETE) might respond as if they worked — but they don’t really save
-
 ## **Screenshots**
 
 - Default state of the app, with placeholder entries fetched from [JSONPlaceholder](https://jsonplaceholder.typicode.com/posts?_limit=9):
