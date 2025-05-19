@@ -13,7 +13,7 @@ function Navbar({
       {showCreate ? (
         <div></div>
       ) : (
-        <button onClick={toggleShowImportant}>
+        <button className={styles.navigator} onClick={toggleShowImportant}>
           {/* Switch between showing all journal entries and showing just those marked as important */}
           {showImportant ? (
             <>
@@ -33,6 +33,7 @@ function Navbar({
         <h1>unwritten pages_</h1>
       </span>
       <button
+        className={styles.navigator}
         onClick={() => {
           toggleShowCreate(); // Show/hide the entry creation form
           notEditing(); // The form is configured for creation, NOT editing

@@ -12,7 +12,7 @@ nav {
   z-index: 100;
 }
 
-nav button {
+.navigator{
   background: none;
   color: aqua;
   border: none;
@@ -24,16 +24,13 @@ nav button {
   gap: 5px;
 }
 
-nav button:hover {
+.navigator:hover {
   transform: scale(1.05);
-}
-
-nav h1 {
-  color: #001f3f;
 }
 
 .logo {
   display: flex;
+  color: #001f3f;
 }
 
 .logo img {

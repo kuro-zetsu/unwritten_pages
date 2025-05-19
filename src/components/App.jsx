@@ -57,7 +57,7 @@ function App() {
   };
 
   const deleteEntry = async (id) => {
-    isLoading(true);
+    setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
     try {
       const response = await fetch(`${baseURL}/${id}`, {
         method: "DELETE",
@@ -67,11 +67,10 @@ function App() {
         throw new Error(`Unable to delete: ${response.status}`);
       }
 
-      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
+
     } catch (error) {
       console.error(`Delete failed: ${error}`);
     }
-    isLoading(false);
   };
 
   // State for determining whether the entry creation component should be rendered
