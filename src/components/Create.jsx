@@ -58,9 +58,10 @@ function Create({
       const data = await response.json();
 
       if (edit) {
-        // If we're editing,
+        // If we're editing, keep all attributes in the entry we're editing, but update title and body from 'data'
         updateEntry({ ...editedEntry, ...data });
       } else {
+        // If we're creating a new entry, add it to our journal
         addEntry(data);
       }
     } catch (error) {
