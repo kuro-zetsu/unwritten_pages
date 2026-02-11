@@ -131,3 +131,7 @@ Then open http://localhost:5173
 - Cloud-based persistent storage
 
 - Mobile-first layout improvements
+
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
