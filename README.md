@@ -1,33 +1,56 @@
 # **unwritten pages_**
 
-unwritten pages_ is a minimalist journaling app built with React — a quiet space for your thoughts, ideas, and little sparks of inspiration. Create entries, edit or delete what you’ve outgrown, and pin the ones that stick with you.
+unwritten pages_ is a minimalist journaling web app built with React, focused on clarity, simplicity, and deliberate UI/UX decisions. The project emphasizes clean component architecture, predictable state management, and thoughtful user experience design.
+
+> This project was built as a solo full-stack frontend exercise to strengthen my skills in modern React development, UI state handling, and clean code structure.
 
 ![demo](src/assets/images/demo.gif)
 
 ## **Features**
 
-- `New Entries` – Write whatever’s on your mind.
+- `Create Journal Entries` – Write and save personal notes and reflections.
 
-- `Edit Mode` – Change your mind? You can update any entry.
+- `Edit & Delete Entries` – Full CRUD functionality.
 
-- `Delete` – Let go of what you don’t need.
+- `Mark as Important` – Star meaningful entries for quick access.
 
-- `Mark as Important` – Star your favourite thoughts.
+- `Filtered Views` – Toggle between all entries and important ones.
 
-- `Filter View` – See everything or just the important stuff.
+- `Optimistic UI Updates` – Immediate UI feedback while syncing data.
 
-- `Mock API` – Powered by JSONPlaceholder for safe, demo-friendly functionality.
+- `Mock API Integration` – JSONPlaceholder used to simulate real backend workflows.
+
+## **Technical Highlights**
+
+- Modular component architecture for clarity and maintainability
+
+- Centralized state handling for predictable UI updates
+
+- Clean separation of UI, logic, and API layers
+
+- Responsive layout using CSS Modules
+
+- Emphasis on readability, accessibility, and minimal visual noise
 
 ## **Tech Stack**
 
-- React
-- Vite
-- CSS Modules
-- JSONPlaceholder (for mock API)
+- `Frontend:` React, Vite
+- `Styling:` CSS Modules
+- `API:` JSONPlaceholder (mock REST API)
 
-## **Getting Started**
+## **Project Goals**
 
-### What you'll need
+- Build a production-style React application from scratch
+
+- Practice real-world CRUD patterns
+
+- Improve UI clarity and design restraint
+
+- Implement predictable state and UI synchronization-
+
+## **Setup & Installation**
+
+### Prerequisites
 
 - [Node.js](https://nodejs.org) (v14+)
 
@@ -60,7 +83,7 @@ Start the development server:
 npm run dev
 ```
 
-Then open http://localhost:5173 in your browser and start writing!
+Then open http://localhost:5173
 
 ## **Screenshots**
 
@@ -95,3 +118,16 @@ Then open http://localhost:5173 in your browser and start writing!
 - Loading screen for when app loads, page is refreshed, or an entry is deleted:
 
   ![Home loading screen](src/assets/images/initial-and-on-delete.png)
+
+
+## **Possible Future Improvements**
+
+- Real backend integration (Flask)
+
+- Authentication and user accounts
+
+- Markdown editor support
+
+- Cloud-based persistent storage
+
+- Mobile-first layout improvements
