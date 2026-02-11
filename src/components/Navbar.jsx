@@ -1,5 +1,6 @@
 import styles from "../assets/css/Navbar.module.css";
 import { Plus, ArrowLeft, Star, House } from "lucide-react";
+import logo from '../assets/images/logo.png'
 
 function Navbar({
   showImportant,
@@ -29,7 +30,7 @@ function Navbar({
         </button>
       )}
       <span className={styles.logo}>
-        <img src='src/assets/images/logo.png' />
+        <img src={logo} />
         <h1>unwritten pages_</h1>
       </span>
       <button
